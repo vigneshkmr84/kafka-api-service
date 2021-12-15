@@ -1,4 +1,6 @@
-package org.learning.kafkaexample.consumer.model;
+package org.project.kafka.model;
+
+import java.util.Date;
 
 public class Order {
 
@@ -13,11 +15,12 @@ public class Order {
     private double cost;
     private String currency;
 
-    public Order() {
+    private Date processedTimeStamp;
 
+    public Order() {
     }
 
-    public Order(int id, String first_name, String last_name, String email, String product, String address, String phone_number, int count, double cost, String currency) {
+    public Order(int id, String first_name, String last_name, String email, String product, String address, String phone_number, int count, double cost, String currency, Date processedTimeStamp) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -28,6 +31,7 @@ public class Order {
         this.count = count;
         this.cost = cost;
         this.currency = currency;
+        this.processedTimeStamp = processedTimeStamp;
     }
 
     public int getId() {
@@ -110,9 +114,17 @@ public class Order {
         this.currency = currency;
     }
 
+    public Date getProcessedTimeStamp() {
+        return processedTimeStamp;
+    }
+
+    public void setProcessedTimeStamp(Date processedTimeStamp) {
+        this.processedTimeStamp = processedTimeStamp;
+    }
+
     @Override
     public String toString() {
-        return "Order : " +
+        return "Order{" +
                 "id=" + id +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
@@ -122,7 +134,9 @@ public class Order {
                 ", phone_number='" + phone_number + '\'' +
                 ", count=" + count +
                 ", cost=" + cost +
-                ", currency='" + currency + '\'';
+                ", currency='" + currency + '\'' +
+                ", processedTimeStamp=" + processedTimeStamp +
+                '}';
     }
 }
 

@@ -1,9 +1,9 @@
-package org.learning.kafkaexample.consumer.configs;
+package org.project.kafka.configs;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.learning.kafkaexample.consumer.model.Order;
+import org.project.kafka.model.Order;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +26,9 @@ public class KafkaConfig {
 
     @Value("${kafka.group-id}")
     String groupId;
+
+    @Value("{REDIS_SERVICE}")
+    String redisServiceURL;
 
 
     @Bean

@@ -2,16 +2,16 @@
 
 I used Confluent Cloud to set up and work on Kafka - quick and easy. Some pointers to be noted.
 
-- For started Comment out the Schema Registry properties.
-- Group ID for the @KafkaLister Annotation - (Cluster Name)
+- For starters Comment out the Schema Registry properties, provided by confluent
+- Group ID for the @KafkaLister Annotation : (Cluster Name)
 - spring.kafka.producer.key-deserializer & spring.kafka.producer.value-deserializer - these are relevant to the message
-  data types.  
-  Reference
-  - [More Custom Deserializer options](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web.servlet.spring-mvc.json)
+  data types.
+    - Reference
+      - [More Custom Deserializer options](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#web.servlet.spring-mvc.json)
 
 ---
 
-### Confluent CLI
+### Basic Confluent CLI Usage
 
 List available Clusters
 
@@ -46,7 +46,7 @@ There are multiple ways of de-serializing the messages.
 
 Both has its own pros and cons. But, I preferred the first option - since it was easy and out of the box implementation
 
-Testing JSON Message :
+Sample JSON Message :
 
 ```json
 {
