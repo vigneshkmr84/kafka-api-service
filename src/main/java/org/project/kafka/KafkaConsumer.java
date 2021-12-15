@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication//(exclude = KafkaConfig.class)
 @EnableAutoConfiguration
-@ComponentScan(basePackages = { "org.project.kafka.service", "org.project.kafka.controller" })
+@ComponentScan(basePackages = {"org.project.kafka.service", "org.project.kafka.controller", "org.project.kafka.configs"})
 public class KafkaConsumer {
 
     public static void main(String[] args) {

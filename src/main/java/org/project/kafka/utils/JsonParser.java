@@ -12,7 +12,7 @@ public class JsonParser {
     }
 
 
-    public String objectToString(Order obj){
+    public String objectToString(Order obj) {
         return gson.toJson(obj);
     }
 

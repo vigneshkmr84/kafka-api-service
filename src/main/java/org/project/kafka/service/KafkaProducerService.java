@@ -17,9 +17,8 @@ public class KafkaProducerService {
     private KafkaTemplate<String, String> kafkaTemplate;
 
     /**
-     *
-     * @param key Kafka Key
-     * @param message Message (Value)
+     * @param key       Kafka Key
+     * @param message   Message (Value)
      * @param topicName Topic Name to insert messages to
      */
     public void sendMessage(String key, String message, String topicName) {
