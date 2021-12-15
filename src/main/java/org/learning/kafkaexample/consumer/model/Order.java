@@ -13,9 +13,10 @@ public class Order {
     private double cost;
     private String currency;
 
-    public Order(){
+    public Order() {
 
     }
+
     public Order(int id, String first_name, String last_name, String email, String product, String address, String phone_number, int count, double cost, String currency) {
         this.id = id;
         this.first_name = first_name;
