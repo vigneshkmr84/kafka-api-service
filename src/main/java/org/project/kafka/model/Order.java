@@ -17,10 +17,12 @@ public class Order {
 
     private Date processedTimeStamp;
 
+    private String orderId;
+
     public Order() {
     }
 
-    public Order(int id, String first_name, String last_name, String email, String product, String address, String phone_number, int count, double cost, String currency, Date processedTimeStamp) {
+    public Order(int id, String first_name, String last_name, String email, String product, String address, String phone_number, int count, double cost, String currency, Date processedTimeStamp, String orderId) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -32,6 +34,7 @@ public class Order {
         this.cost = cost;
         this.currency = currency;
         this.processedTimeStamp = processedTimeStamp;
+        this.orderId = orderId;
     }
 
     public int getId() {
@@ -122,6 +125,14 @@ public class Order {
         this.processedTimeStamp = processedTimeStamp;
     }
 
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -136,6 +147,7 @@ public class Order {
                 ", cost=" + cost +
                 ", currency='" + currency + '\'' +
                 ", processedTimeStamp=" + processedTimeStamp +
+                ", orderId='" + orderId + '\'' +
                 '}';
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+// This is a Sample Class - Will be moved out
 @Service
 public class Consumer {
 
