@@ -2,7 +2,6 @@ package org.project.kafka.controller;
 
 import org.project.kafka.model.Order;
 import org.project.kafka.utils.JsonParser;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -16,7 +15,7 @@ public class Consumer {
 
     JsonParser jsonParser = new JsonParser();
 
-    @KafkaListener(topics = "test-topic", groupId = "demo-cluster")
+    //@KafkaListener(topics = "test-topic", groupId = "demo-cluster")
     //, containerFactory = "kafkaListenerContainerFactory")
     public void consume(@Payload String message
             , @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) Integer key

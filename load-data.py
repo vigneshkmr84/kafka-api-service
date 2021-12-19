@@ -1,7 +1,8 @@
 import requests
 import json
 
-f = open('./MOCK_DATA.json')
+#f = open('./MOCK_DATA.json')
+f = open('./Mock_Data_10.json')
 data = json.load(f)
 
 url = "http://localhost:8080/order"

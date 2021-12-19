@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
 import java.util.UUID;
 
 @RestController
@@ -28,6 +29,9 @@ public class OrderController {
     private static final int min = 3;
     private static final int mod = 11;
 
+    private static final String KAFKA_TOPIC_PRODUCER_KEY = "kafka.producer-topic";
+    private static final String SERVICE_NAME_KEY =  "service.name";
+
     @Autowired
     private ApplicationContext context;
 
@@ -39,23 +43,26 @@ public class OrderController {
 
 
     @PostMapping("/order")
-    public ResponseEntity<String> produce(@RequestBody Order order) {
-        String topic = env.getProperty("kafka.producer-topic");
-        String serviceName = env.getProperty("service.name");
+    public ResponseEntity<String> produce(@RequestBody Order incomingOrder) {
+        String topic = env.getProperty(KAFKA_TOPIC_PRODUCER_KEY);
+        String serviceName = env.getProperty(SERVICE_NAME_KEY);
 
         log.info("Kafka Topic - " + topic);
-        log.info("Order Received - " + order.getId());
-        String message = jsonParser.objectToString(order);
+        log.info("Order Received - " + incomingOrder.getId());
+        String message = jsonParser.objectToString(incomingOrder);
 
         String finalURL = REDIS_URL + "?status=success&" + "serviceName=" + serviceName;
         log.info("Final URL for Redis : " + finalURL);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+
         String orderId = uuidGenerator();
         log.info("Order Id Generated - " + orderId);
-        order.setOrderId(orderId);
+        incomingOrder.setOrderId(orderId);
+        incomingOrder.setProcessedTimeStamp(new Date());
+
         RestTemplate restTemplate = context.getBean("restTemplate", RestTemplate.class);
-        HttpEntity<String> entity = new HttpEntity<>(jsonParser.objectToString(order), headers);
+        HttpEntity<String> entity = new HttpEntity<>(jsonParser.objectToString(incomingOrder), headers);
         boolean flag = false;
 
         try {
