@@ -61,19 +61,26 @@ public class OrderController {
         incomingOrder.setOrderId(orderId);
         incomingOrder.setProcessedTimeStamp(new Date());
 
+        //log.info(incomingOrder.toString());
+
+
         RestTemplate restTemplate = context.getBean("restTemplate", RestTemplate.class);
-        HttpEntity<String> entity = new HttpEntity<>(jsonParser.objectToString(incomingOrder), headers);
+        String jsonMessage = jsonParser.objectToString(incomingOrder);
+        //log.info("JSON MESSAGE - " + jsonMessage);
+        HttpEntity<String> entity = new HttpEntity<>( jsonMessage, headers);
         boolean flag = false;
 
         try {
             ResponseEntity<String> response = restTemplate.exchange(finalURL, HttpMethod.POST, entity, String.class);
 
-            log.info("HTTP Status Code : " + response.getStatusCode());
-            log.info("HTTP Message : " + response.getBody());
+            int statusCode = response.getStatusCodeValue();
+            log.info("HTTP Status Code : {}; HTTP Message : {} ", response.getStatusCode(), response.getBody());
+            //log.info("HTTP Message : " + response.getBody());
 
-            log.info("Inserting message to kafka");
-            // key will be generated order-id
-            kafkaProducerService.sendMessage(orderId, message, topic);
+            if ( statusCode == 201) {
+                // key will be generated order-id
+                kafkaProducerService.sendMessage(orderId, jsonMessage, topic);
+            }
 
         } catch (Exception e) {
             log.error("TimeOut occurred during Redis insert " + e.getMessage());

@@ -22,6 +22,24 @@ public class Order {
     public Order() {
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", email='" + email + '\'' +
+                ", product='" + product + '\'' +
+                ", address='" + address + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                ", count=" + count +
+                ", cost=" + cost +
+                ", currency='" + currency + '\'' +
+                ", processedTimeStamp=" + processedTimeStamp +
+                ", orderId='" + orderId + '\'' +
+                '}';
+    }
+
     public Order(int id, String first_name, String last_name, String email, String product, String address, String phone_number, int count, double cost, String currency, Date processedTimeStamp, String orderId) {
         this.id = id;
         this.first_name = first_name;
@@ -133,22 +151,5 @@ public class Order {
         this.orderId = orderId;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", email='" + email + '\'' +
-                ", product='" + product + '\'' +
-                ", address='" + address + '\'' +
-                ", phone_number='" + phone_number + '\'' +
-                ", count=" + count +
-                ", cost=" + cost +
-                ", currency='" + currency + '\'' +
-                ", processedTimeStamp=" + processedTimeStamp +
-                ", orderId='" + orderId + '\'' +
-                '}';
-    }
 }
 
