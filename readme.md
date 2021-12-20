@@ -62,3 +62,19 @@ Sample JSON Message :
   "currency": "USD"
 }
 ```
+
+Sample Bash API 
+``` shell
+curl -X POST -H "Content-Type:application/json" "http://localhost:8080/order" -d '{
+  "id": 1,
+  "first_name": "Elaine",
+  "last_name": "Dallosso",
+  "email": "edallosso0@networkadvertising.org",
+  "product": "Soup Campbells Beef With Veg",
+  "address": "575 Portage Hill",
+  "phone_number": "659-993-4818",
+  "count": 17,
+  "cost": 21.38,
+  "currency": "USD"
+}'
+```

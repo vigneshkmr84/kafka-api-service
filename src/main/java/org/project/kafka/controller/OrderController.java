@@ -30,7 +30,7 @@ public class OrderController {
     private static final int mod = 11;
 
     private static final String KAFKA_TOPIC_PRODUCER_KEY = "kafka.producer-topic";
-    private static final String SERVICE_NAME_KEY =  "service.name";
+
 
     @Autowired
     private ApplicationContext context;
@@ -45,7 +45,7 @@ public class OrderController {
     @PostMapping("/order")
     public ResponseEntity<String> produce(@RequestBody Order incomingOrder) {
         String topic = env.getProperty(KAFKA_TOPIC_PRODUCER_KEY);
-        String serviceName = env.getProperty(SERVICE_NAME_KEY);
+        String serviceName = env.getProperty("service.application.name");
 
         log.info("Kafka Topic - " + topic);
         log.info("Order Received - " + incomingOrder.getId());
